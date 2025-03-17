@@ -1,0 +1,981 @@
+<!DOCTYPE html >
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curriculum - Yan Giglietti Puccia</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+   /* Impostazioni di base */
+   body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+/*    background-color: #F0F1F3;
+    background-color: #d9e3ec;*/
+    background-color:var(--bs-card-bg);
+ }
+ body {
+   color: black;
+}
+body, #info {
+  position: relative;
+}
+#maininfo section{
+   padding: 15px;
+}
+#sitebody{
+/*   box-shadow:;  */
+box-shadow:1px 30px 10px black ;
+}
+.bodysite {
+   background-color: #d9e3ec;
+   z-index: 999;
+   position: relative;
+   border-top-left-radius: 20px;
+   border-top-right-radius: 20px;
+   margin-top:20px;
+   
+}
+#info {
+ color:white;
+ overflow: hidden;
+ position: relative;
+ background-color: #2a3e51;
+ padding: 12px;
+ border-top-left-radius: 20px; 
+ border-top-right-radius: 20px;
+ margin-top:-20px;
+ box-shadow:-4px 10px 10px black /* Ombra morbida */
+}
+/**menu header**/
+
+.header-video-container.sidebar_hover {
+   border-radius: 120px;
+
+}
+.header-video-container.sidebar_hover:hover {
+   overflow: hidden;
+   border-radius: 120px;
+   margin: 0px;
+   box-shadow: none;
+}
+.sidebar {
+   top:-5px;
+   background-color: white;
+   will-change: transform;
+   left: 50%;
+   position: relative;
+   transition: position 0.8s ease, left 0.8s ease, transform 0.8s ease; /* Animazione */
+   transform: translateX(-50%);
+   margin:0 15px 18px 0px;
+}
+.sidebar.side-left{
+   margin: 0px;
+}
+.sidebar.side-left:hover{
+    transform: scale(1.05);
+
+}
+/* Le gocce di pioggia */
+
+/* Animazione di caduta della pioggia */
+.raindrop {
+ position: absolute;
+ top:-10px; /* Partenza sopra lo schermo */
+ left: 0;
+ width: 60px;
+ height: 60px;
+ background: aquamarine; /* Colore della pioggia */
+ animation: fall 0.5s linear infinite, moveDiagonal 0.5s linear infinite;
+ z-index: 0;
+ opacity: 0.1;
+ display: none;
+ justify-content: center;  /* Centra orizzontalmente */
+ align-items: center;
+ font-size: 22px;     
+}
+@keyframes fall {
+ 0% {
+  top: 0px;
+}
+100% {
+   top: 100%;
+}
+}
+
+/* Animazione diagonale: movimento da sinistra a destra */
+@keyframes moveDiagonal {
+ 0% {
+  left: -500px;
+  transform: rotate(45deg);
+}
+100% {
+  left: 100vw;
+  transform: rotate(45deg);
+}
+}
+
+/* Generazione delle gocce */
+.raindrop:nth-child(odd) {
+ animation-duration: 10s, 15s; /* Durata diversa per diversificare il movimento */
+}
+
+.raindrop:nth-child(even) {
+ animation-duration: 10s, 20s;
+}
+
+
+.card {
+  transition: transform 1s ease, box-shadow 0.5s ease;
+}
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+#skills .list-group-item li.list-group-item {
+   position: relative;
+   transition: box-shadow 0.5s ease-in-out;
+   cursor: context-menu;
+   white-space: nowrap;
+}
+#skills .list-group-item li.list-group-item:nth-child(odd)::before {
+   background-color: rgba(255, 255, 0, 0.2);
+   box-shadow: 0 0 15px rgba(255, 255, 0, 0.5);
+
+}
+
+#skills .list-group-item li.list-group-item:nth-child(even)::before {
+   background-color: rgba(0, 0, 255, 0.2);
+   box-shadow: 0 0 15px  rgba(0, 0, 255, 0.5);
+}
+
+#skills .list-group-item li.list-group-item::before {
+   content: '';
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   opacity: 0;
+   transition: opacity 0.5s ease-in-out;
+   pointer-events: none;
+}
+
+#skills .list-group-item li.list-group-item:hover::before {
+   opacity: 1;
+}
+
+.icon {
+   cursor: move;
+}
+
+.icon.animated-y:hover {
+  display: inline-block;
+  animation: bounce 1s infinite;
+}
+
+.icon.animated-x:hover {
+  display: inline-block;
+  animation: switch 1s infinite;
+}
+.icon.animated-z:hover {
+  display: inline-block;
+  animation: rotate-bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+   transform: translateY(0);
+}
+50% {
+   transform: translateY(-10px);
+}
+}
+
+@keyframes switch {
+  0%, 100% {
+   transform: translateX(0);
+}
+50% {
+   transform: translateX(-10px);
+}
+}
+
+@keyframes rotate-bounce {
+  0%, 100% {
+   transform: rotate(0deg); /* Partenza e ritorno alla posizione iniziale */
+}
+50% {
+   transform: rotate(15deg); /* Ruotare a destra */
+}
+75% {
+   transform: rotate(-15deg); /* Ruotare a sinistra */
+}
+}
+
+/* Effetto di movimento sull'immagine al mouse over */
+.card:hover .card-img-top {
+   transform: scale(1.1) translateX(10%) translateY(-10%);
+}
+
+/* Aggiungi il cursore di tipo "pointer" per un effetto visivo migliore */
+.terminal-icon:hover {
+   cursor: pointer;
+}
+.terminal-icon {
+   text-align: right;
+   float: right;
+   margin-right: 10px;
+}
+
+
+.console {
+  width: 0px; 
+  height: 0px;
+  background-color: #3498db;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 2s ease-out; /* Animazione più lenta e fluida */
+}
+
+.console.expanded {
+   width: 100vw;
+   height: 100vh;
+   border-radius: 0;
+   padding-top: 5px;
+   text-align: center;
+   display: flex;
+   justify-content: center; /* Centra orizzontalmente */
+   /* align-items: center; Centra verticalmente */
+}
+.bash {
+   background-color: black;
+   color: lime;
+   height: 80%;
+   max-height: 600px;
+   width: 80%;
+   max-width: 800px;
+   font-family: monospace;
+   border-radius: 5px;
+   overflow-y: auto;
+   padding-left: 5px;
+   text-align: left;
+   text-decoration: blink;
+}
+.bash input {
+ background: transparent;
+ border: none;
+ color: lime;
+ width: 80%;
+ font-family: monospace;
+ outline: none;
+}
+.prompt {
+ color: white;
+}
+.header {
+   display: none; /* Inizialmente nascosto */
+   transition: height 0.3s ease;
+}
+
+/* Quando l'header è aperto, espandiamo il contenuto */
+.expanded.header {
+   display: block;
+}
+div#info.col-md-4 section.mb-4 div.container.mt-4 div.card{
+  background: none;
+  border: none;
+  color: white;
+}div#info.col-md-4 section.mb-4 div.container.mt-4 div.card:hover{
+  background-color: #2a3e51;
+  z-index: 9999;
+
+}
+.header-container {
+   width: 100%;
+   position: relative;
+   padding: 15px;
+   text-align: center;
+/*   margin-top: -30px;*/
+}
+.header-text-container {
+   margin-left: auto;
+   margin-right: auto;
+   border-radius: 120px;
+   background-color: white;
+   z-index: 1;
+   margin-top: 20px;
+   max-width: 460px;
+   padding: 15px 1px;
+   text-align: center;
+}
+/*.header-text-container h1{
+   position: absolute;
+   z-index: 3;
+ text-align: center;
+   width: 100%;
+   white-space: nowrap;
+   left: 0;
+}*/
+.header-video-container {
+   position: absolute;
+   width: auto;
+   height: 100%;
+   z-index: -1;
+   overflow: hidden;
+   left: 0;
+   right: 0;
+   /* margin: 15px; margin:0px 15px ; */
+  
+   /* box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);*/
+}
+.header-video-container video {
+ position: realative;
+ top: 0;
+ left: 0;
+ width: auto;
+ height: auto;
+ object-fit: cover; /* Mantiene le proporzioni e riempie il contenitore */
+ object-position: center; /* Centra il video nel contenitore */
+ z-index: -1; /* Posiziona il video dietro al contenuto del header */
+ justify-content: center; 
+ display: none;
+}
+.header:hover .header-video-container video {
+   display: block;
+}
+.header{
+   display: flex;
+   justify-content: center;
+}
+footer {
+  background-color: #78909c !important; /* Colore di sfondo del footer */
+  color: #ffffff; /* Colore del testo */
+  padding: 20px;
+  text-align: center;
+}
+.header-menu-container {
+   overflow: hidden;
+   width: 98%;
+   z-index: 0;
+   border-radius: 0px 0px 140px 140px;
+   margin: 1%;
+   opacity: 0.7;
+}
+
+
+</style>
+</head>
+<body>     
+   <header class="text-center mb-4 sidebar expanded header">
+      <div class="header-container">
+         <div class="header-video-container">
+            <video  class="animated-video" muted controls loop>
+             <source src="./videos/trainwatchout.webm" type="video/webm">
+               <!-- <source src="/home/yan/Documenti/lavoro/cv/sito/video/20250105_133010.mp4" type="video/mp4"> -->
+                Il tuo browser non supporta il tag video.
+             </video> 
+
+          </div>  
+          <div class="header-text-container">
+            <h1>Yan Giglietti Puccia</h1>
+            <h2 class="text-muted">Python Developer</h2>
+            <!-- <p style="width:100%"><span class="icon animated-y">📍</span> Florence, Italy </span>   <i id="" onclick="expandSquare()" class="fas fa-terminal terminal-icon"></i></p> -->
+      <div class="header-menu-container">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Features</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</div>
+         </div>   
+      </div>  
+
+   </header>
+   <div class="console">
+
+      <div class="bash" id="bash">
+         <i id="" onclick="expandSquare()" class="fas fa-terminal terminal-icon"></i>
+         <div id="bash-output"><pre>
+          YYY   YYY       GGG        PPPPPPP
+          YYY   YYY      G           PP    P
+          YYYYYYY       G  GG       PPPPPPP
+          YYY         G   G        PP
+          YYY    [.]  GGGGG   [.]  PP      [.]
+
+          (YOUR       GRAPHIC       PARADOX)
+
+
+       </pre></div>
+       <div class="prompt">
+        <span>$ </span><input type="text" id="bash-input" autofocus>
+     </div>
+  </div>
+</div>
+<div class="container mt-6" id="sitebody">
+
+   <div class="row bodysite">
+    <div class="col-md-8" id="maininfo">
+      <section class="mb-4" >
+         <!-- <span class="icon animated-z">🧑‍💼</span>  -->
+         <h3 id="profile"> <i class="fa-regular fa-circle-user icon animated-z"></i> Profile</h3>
+         <div class="container mt-4">
+           <p class="text-muted">Developer with over 10 years of experience in Python environments, specializing in web development and automation systems administration. I have developed a strong focus on clean and scalable code, following best practices such as PEP8 and DRY. I work effectively in teams and have a strong problem-solving attitude. I also have expertise in network management, vector graphics, photo editing, video editing, and audio recording.</p>
+        </div>
+     </section>
+     <section class="mb-4" >
+        <!-- <span class="icon animated-x"> 💼 </span> -->
+        <h3 id="-work-experience"><i class="fa-solid fa-code icon animated-z"></i> Work Experience</h3>
+        <div class="container mt-4">
+           <div class="card shadow-sm">
+            <div class="card-body">
+             <h4 class="card-title"><strong>Python Developer – Blueoak for Gilbarco Veeder-Root</strong></h4>
+             <p class="text-muted">📅 <em>September 2016 – Present</em> | 📍 Florence</p>
+             <ul class="list-group list-group-flush">
+              <li class="list-group-item">Collaborating with the QA team of the Global department for the creation and maintenance of complete systems for functional test automation.</li>
+              <li class="list-group-item">Constant interaction with multinational employees located in the USA and India, ensuring continuous alignment following the AGILE methodology.</li>
+              <li class="list-group-item">Actively contributing to the development of a CI/CD system, working closely with the DevOps team.</li>
+           </ul>
+        </div>
+     </div>
+  </div>
+
+  <div class="container mt-4">
+    <div class="card shadow-sm">
+     <div class="card-body">
+       <h4 class="card-title" id="-developer-analyst-blueoak-srl-"><strong>Developer, Analyst – Blueoak srl</strong></h4>
+       <p class="text-muted">📅 <em>March 2015 – August 2016</em><br>📍 Florence  </p>
+       <ul class="list-group list-group-flush">
+          <li  class="list-group-item">Developed and managed both the front-end and admin area for various projects using PHP and Python in a Linux environment.  </li>
+       </ul>
+
+    </div>
+ </div>
+</div>
+
+<div class="container mt-4">
+ <div class="card shadow-sm">
+   <div class="card-body">
+    <h4 class="card-title" id="-python-developer-max-mile-srl-"><strong>Python Developer – Max Mile srl</strong></h4>
+    <p class="text-muted">📅 <em>November 2014 – July 2015</em><br>📍 Florence  </p>
+    <ul class="list-group list-group-flush">
+       <li  class="list-group-item">Developed an e-commerce multi-store (<a href="http://www.senza-spreco.it">www.senza-spreco.it</a>) in Django.  </li>
+       <li  class="list-group-item">Integrated a geo-database (GIS) and implemented payment methods for the multi-store using Banca Sella APIs.  </li>
+    </ul>
+ </div>
+</div>
+</div>
+<div class="container mt-4">
+ <div class="card shadow-sm">
+  <div class="card-body">
+    <h4 class="card-title" id="-php-programmer-schema31-spa-"><strong>PHP Programmer – Schema31 spa</strong></h4>
+    <p class="text-muted">📅 <em>November 2013 – July 2014</em><br>📍 Florence  </p>
+    <ul class="list-group list-group-flush">
+       <li  class="list-group-item">Managed a PHP portal using Symfony2.  </li>
+       <li  class="list-group-item">Developed plugins and functionalities for the admin panel.  </li>
+    </ul>
+ </div>
+</div>
+</div>
+<div class="container mt-4">
+ <div class="card shadow-sm">
+  <div class="card-body">
+    <h4 class="card-title" id="-web-developer-nana-bianca-srl-"><strong>Web Developer – Nana Bianca srl</strong></h4>
+    <p class="text-muted">📅 <em>April 2012 – October 2013</em><br>📍 Florence  </p>
+    <ul class="list-group list-group-flush">
+       <li  class="list-group-item">Developed front-end components and admin panels for high-traffic websites.  </li>
+       <li  class="list-group-item">Worked with tools like Sentry and Jenkins in a macOS environment using Sublime Text.  </li>
+    </ul>
+
+ </div>
+</div>
+</div>
+<div class="container mt-4">
+ <div class="card shadow-sm">
+   <div class="card-body">
+    <h4 class="card-title" id="-system-programmer-winet-srl-"><strong>System Programmer – Winet srl</strong></h4>
+    <p class="text-muted">📅 <em>July 2011 – March 2012</em><br>📍 Florence  </p>
+    <ul class="list-group list-group-flush">
+       <li  class="list-group-item">Managed the system for configuring and remotely controlling touchscreen panels with a web interface in a Linux environment, used by governmental and private entities.  </li>
+    </ul>
+
+ </div>
+</div>
+</div>
+<div class="container mt-4">
+ <div class="card shadow-sm">
+  <div class="card-body">
+    <h4 class="card-title" id="-php-programmer-policomunicazioni-srl-"><strong>PHP Programmer – Policomunicazioni srl</strong></h4>
+    <p class="text-muted">📅 <em>February 2011 – December 2011</em><br>📍 Florence  </p>
+    <ul class="list-group list-group-flush">
+       <li  class="list-group-item">Optimized SEO and developed PHP-based websites using Joomla.  </li>
+    </ul>
+
+ </div>
+</div>
+</div>
+<div class="container mt-4">
+ <div class="card shadow-sm">
+  <div class="card-body">
+    <h4 class="card-title" id="-php-programmer-nwg-spa-"><strong>PHP Programmer – NWG spa</strong></h4>
+    <p class="text-muted">📅 <em>May 2010 – November 2010</em><br>📍 Prato  </p>
+    <ul class="list-group list-group-flush">
+       <li  class="list-group-item">Developed PHP applications and web interfaces for the Vtiger-based portal.  </li>
+    </ul>
+
+ </div>
+</div>
+</div>
+<div class="container mt-4">
+ <div class="card shadow-sm">
+  <div class="card-body">
+    <h4 class="card-title" id="-facebook-applications-developer-interconnessioni-srl-"><strong>Facebook Applications Developer – Interconnessioni srl</strong></h4>
+    <p class="text-muted">📅 <em>April 2010 – July 2010</em><br>📍 Florence  </p>
+    <ul class="list-group list-group-flush">
+       <li  class="list-group-item">Created Facebook applications in PHP, FBML, FQL, CSS, and SQL.  </li>
+    </ul>
+
+ </div>
+</div>
+</div>
+<div class="container mt-4">
+ <div class="card shadow-sm">
+  <div class="card-body">
+    <h4 class="card-title" id="-front-end-programmer-viva-hotels-"><strong>Front-End Programmer – Viva Hotels</strong></h4>
+    <p class="text-muted">📅 <em>March 2008 – December 2009</em><br>📍 Florence  </p>
+    <ul class="list-group list-group-flush">
+       <li  class="list-group-item">Developed web interfaces for hotel booking portals.  </li>
+    </ul>
+
+ </div>
+</div>
+</div>
+<div class="container mt-4">
+ <div class="card shadow-sm">
+  <div class="card-body">
+    <h4 class="card-title" id="-it-technician-sca-"><strong>IT Technician – SCA</strong></h4>
+    <p class="text-muted">📅 <em>October 2007 – December 2007</em><br>📍 Altopascio  </p>
+    <ul class="list-group list-group-flush">
+       <li  class="list-group-item">HP technician for an IT migration project.  </li>
+    </ul>
+
+ </div>
+</div>
+</div>
+<hr>
+<h3 id="-internships"><i class="fa-solid fa-chalkboard-user"></i> Internships</h2>
+   <div class="container mt-4">
+    <div class="card shadow-sm">
+     <div class="card-body">
+      <h4 class="card-title" id="-web-developer-ato-design-"><strong>Web Developer – ATO Design</strong></h4>
+      <p>📍 Florence  </p>
+      <ul class="list-group list-group-flush">
+         <li  class="list-group-item">Joined the software and web development team after completing the &quot;Proweb&quot; course from the Province of Florence.  </li>
+      </ul>
+   </div>
+</div>
+</div>
+<hr>
+<h3 id="-education-training"><i class="fa-solid fa-scroll"></i> Education &amp; Training</h2>
+   <div class="container mt-4">
+    <div class="card shadow-sm">
+     <div class="card-body">
+       <h4 class="card-title" id="-advertising-graphics-caterina-tornabuoni-"><strong>Advertising Graphics – Caterina Tornabuoni</strong></h4>
+       <p class="text-muted">📅 <em>June 2002</em><br>📍 Florence<br>🎓 Technical Diploma  </p>
+    </div>
+ </div>
+</div>
+
+<hr>
+<h2 id="-courses"><i class="fa-solid fa-chalkboard"></i> Courses</h2>
+<div class="container mt-4">
+ <div class="card shadow-sm">
+  <div class="card-body">
+   <ul class="list-group list-group-flush">
+      <li class="list-group-item"><strong>&quot;Java Programmer&quot; Course</strong> – SSTI  </li>
+      <li class="list-group-item"><strong>Basic Java Course (object-oriented programming)</strong> – CSIAF  </li>
+      <li class="list-group-item"><strong>&quot;Proweb&quot; Web Development Course</strong> – IDI Informatica  </li>
+   </ul>
+</div>
+</div>
+</div>
+
+</section>
+</div>
+<!-- Colonna laterale destra (sezioni) -->
+<div class="col-md-4"  id="info">
+   <section class="mb-4">
+     <!-- <h3 id="-personal-information"><span class="icon animated-z">🛠</span> Personal Information</h3>
+     <i class="fa-regular fa-circle-user"></i> -->
+     <div class="container mt-4">
+        <div class="card">
+         <div class="card-body">
+          <h3 id="-personal-information"><i class="fa-solid fa-passport icon animated-z" style="color:green"></i> Personal Information</h3> 
+          <ul class="list-group-flush" >
+             <li  class="list-group-item"><strong><i class="fa-li fa-regular fa-circle-play"></i> Date of Birth</strong>: 14-10-1983, Fiesole (FI)</li>
+             <li  class="list-group-item"><strong><i class="fa-li fa-solid fa-earth-europe"></i> Nationality</strong>: Italian</li>
+             <li  class="list-group-item"><strong><i class="fa-li fa-solid fa-car"></i> Driving License</strong>: Type B</li>
+             <li  class="list-group-item"><strong><i class="fa-li fa-regular fa-hand-back-fist"></i> Hobbies</strong>: Music, internet, DIY</li>
+          </ul>
+       </div>
+    </div>
+ </div>
+</section>
+
+<section class="mb-4" id="skills">
+  <!-- <h3 > <span class="icon animated-y">💡</span> Skills</h3> -->
+  <div class="container mt-4">
+   <div class="card">
+    <div class="card-body">
+     <h3 ><i class="fa-solid fa-lightbulb icon animated-y" style=" color: yellow;"></i> Skills</h3> 
+     <ul class="list-group-flush">
+       <li class="list-group-item"><strong>Programming Languages & Frameworks</strong>:
+         <ul class="list-group-flush">
+           <li class="list-group-item" style="width:  70%;"><i class="fa-li fa-brands fa-python icon animated-z"></i> Python</li>
+           <li  class="list-group-item" style="width: 70%;"><i class="fa-li fa-brands fa-linux icon animated-y"></i> Linux Bash</li>
+           <li  class="list-group-item" style="width: 50%;"><i class="fa-li fa-brands fa-jsfiddle icon animated-x"></i> JavaScript</li>
+           <li  class="list-group-item" style="width: 70%;"><i class="fa-li fa-solid fa-hippo icon animated-z"></i> Django</li>
+           <li  class="list-group-item" style="width: 70%;"><i class="fa-li fa-brands fa-php icon animated-x"></i> PHP</li>
+           <li  class="list-group-item" style="width: 70%;"><i class="fa-li fa-brands fa-css3-alt icon animated-y"></i> CSS3 / HTML5</li>
+           <li  class="list-group-item" style="width: 30%;"><i class="fa-li fa-brands fa-java icon animated-x"></i> Java</li>
+           <li  class="list-group-item" style="width: 20%;"><i class="fa-li fa-solid fa-hashtag icon animated-z"></i> ASP.NET</li>
+        </ul>
+     </li>
+     <li class="list-group-item"><strong>Tools & Technologies</strong>:
+      <ul class="list-group-flush">
+        <li class="list-group-item" style="width: 80%;"><i class="fa-li fa-brands fa-github"></i> Git / GitHub</li>
+        <li class="list-group-item" style="width: 60%;"><i class="fa-li fa-brands fa-jenkins"></i> Jenkins</li>
+        <li class="list-group-item" style="width: 70%;"><i class="fa-li fa-brands fa-searchengin"></i> SEO</li>
+        <li class="list-group-item" style="width: 80%;"><i class="fa-li fa-brands fa-wordpress"></i> WordPress / Joomla</li>
+        <li class="list-group-item" style="width: 80%;"><i class="fa-li fa-brands fa-apple"></i> Apple Mac Systems / Microsoft Windows</li>
+     </ul>
+  </li>
+  <li class="list-group-item"><strong>Methodologies</strong>:
+
+   <ul class="list-group-flush">
+     <li class="list-group-item" style="width: 80%;"><i class="fa-li fa-solid fa-soap"></i> PEP8</li>
+     <li class="list-group-item" style="width: 80%;"><i class="fa-li fa-regular fa-handshake"></i> AGILE</li>
+  </ul>
+</li>
+<li class="list-group-item"><strong>Software</strong>:
+   <ul class="list-group-flush">
+     <li class="list-group-item" style="width: 90%;"><i class="fa-li fa-solid fa-spell-check"></i> Sublime Text 3</li>
+     <li class="list-group-item" style="width: 60%;"><i class="fa-li fa-solid fa-circle"></i> Eclipse</li>
+     <li class="list-group-item" style="width: 60%;"><i class="fa-li fa-solid fa-frog"></i> Toad</li>
+     <li class="list-group-item" style="width: 50%;"><i class="fa-li fa-solid fa-ethernet"></i> NetBeans</li>
+  </ul>
+</li>
+<li class="list-group-item"><strong>Other Skills</strong>:
+   <ul class="list-group-flush">
+     <li class="list-group-item" style="width: 60%;"><i class="fa-li fa-solid fa-vector-square"></i> Vector Graphics</li>
+  </ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<section class="mb-4">
+  <div class="container mt-4">
+   <div class="card">
+    <div class="card-body">
+     <h3 id="-languages"><i class="fa-solid fa-language icon animated-x" style="color:pink;"></i> Languages</h3>
+     <ul class="list-group-flush">
+       <li  class="list-group-item" style="width: 99%;"><i class="fa-li fa-solid fa-italic"></i> Italian</li>
+       <li class="list-group-item" style="width: 50%;"><i class="fa-li fa-solid fa-flag-usa"></i> English</li>
+    </ul>
+ </div>
+</div>
+</div>
+</section>
+<div class="raindrop"></div>
+</div>
+</div>
+</div>
+
+<!-- Aggiungi le gocce di pioggia -->
+
+</div>
+<footer class=" text-light text-center py-4">
+  <div class="container">
+    <p>
+      This website was crafted using Vanilla JS, Bootstrap, and Font Awesome.
+      All code is original and custom-made, and is freely available for use under the
+      <a href="https://creativecommons.org/licenses/by/4.0/" class="text-light" target="_blank" rel="noopener noreferrer">
+        Creative Commons Attribution 4.0 International License
+     </a>.
+     <i class="fab fa-creative-commons"></i>
+  </p>
+  <p>
+   Additionally, we have integrated ChatGPT to enhance user experience.
+   <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT Logo" style="width: 20px; height: 20px; vertical-align: middle;">
+</p>
+<p>
+   Warm regards from the development team!
+</p>
+</div>
+</footer>
+<script>
+  // Aggiungi più gocce di pioggia dinamicamente
+ for (let i = 0; i < 50; i++) {
+  let raindrop = document.createElement('div');
+  raindrop.classList.add('raindrop');
+    raindrop.style.left = `${i * 2 + 2}px`; // Posizione casuale
+    raindrop.style.animationDuration = `${Math.random() * 2 + 10}s,${Math.random() * 2 + 10}s`; // Durata casuale
+    raindrop.style.display = 'block'; 
+    //document.body.appendChild(raindrop);
+    skills_div = document.getElementById('info')
+    skills_div.appendChild(raindrop);
+ }
+
+ // Rileva il mouse hover su #skills
+ const skillsSection = document.getElementById("skills");
+
+ skillsSection.addEventListener("mouseenter", () => {
+
+  document.querySelectorAll(".raindrop").forEach(drop => {
+         drop.textContent = "💡"; // Cambia il contenuto delle gocce
+         drop.style.background = "none";
+      });
+});
+
+ skillsSection.addEventListener("mouseleave", () => {
+  document.querySelectorAll(".raindrop").forEach(drop => {
+         drop.textContent = " "; // Rimuove l'emoji quando il mouse esce
+         drop.style.background = "aquamarine";
+      });
+});
+
+
+
+ function eseguiSeGrande() {
+   const sidebar = document.querySelector(".sidebar");
+   const header_selector = document.querySelector(".header");
+   const videoContainer = document.querySelector(".header-video-container");
+   const headerContainer = document.querySelector(".header-container");
+   const hederText = document.querySelector(".header-text-container"); 
+   const sitebodySection = document.getElementById("sitebody"); 
+
+   if (window.innerWidth > 1800) {
+     console.log(`La risoluzione è più grande di 800x600 è ${window.innerWidth}`);
+        // Inserisci qui il codice da eseguire quando la risoluzione è maggiore di 800x600
+
+
+     window.addEventListener("scroll", () => {
+       const rect = sidebar.getBoundingClientRect();
+             // Se la sidebar esce dalla vista (top <= 0), diventa fissa a sinistra
+       if (rect.top <= -199) {
+         videoContainer.classList.toggle('sidebar_hover');
+         sidebar.classList.toggle('side-left'); 
+         sidebar.style.position = "fixed";
+         sidebar.style.top = "15px";
+               sidebar.style.left = "30px"; // Posizionata a sinistra
+              // sidebar.style.marin = "30px"; // Posizionata a sinistra
+               
+               // Imposta la proprietà transform-origin in modo che la trasformazione avvenga nell'angolo in alto a sinistra
+               sidebar.style.transformOrigin = 'top left';   
+
+               // Applica la trasformazione per ridurre la dimensione al 50%
+              sidebar.style.transform = "scale(0.5)";
+
+               // Imposta lo sfondo su 'none' (rimuove il colore di sfondo)
+               sidebar.style.background = "none";
+               hederText.style.background = "none";
+
+               // Imposta la larghezza e altezza minima
+               sidebar.style.minWidth = "200px";
+               sidebar.style.minHeight = "100px";
+               sitebodySection.style.marginTop = "220px";
+               //headerContainer.style.background="white";
+               headerContainer.style.padding="0";
+             //   headerContainer.style.margin="35px";
+               videoContainer.style.borderRadius="120px";
+              // videoContainer.style.margin="0";
+               //header_selector.style.padding="80px";
+
+            } 
+            if (window.scrollY === 0) {
+               sidebar.style.top = "-5px";
+               videoContainer.classList.toggle('sidebar_hover');
+               sidebar.classList.toggle('side-left'); 
+               sidebar.style.position = "relative"; // Torna alla posizione originale
+               sidebar.style.left = "50%"; // Torna centrata
+               sidebar.style.transform = "translateX(-50%)"; // Rendi centratamente
+               sidebar.style.transition = " position 0.8s ease, left 1.5s ease";
+               sidebar.style.background = "white";
+               sitebodySection.style.marginTop = "0";
+               videoContainer.style.overflow="hidden";
+               videoContainer.style.borderRadius="0px";
+               //videoContainer.style.margin="0px 15px";
+               headerContainer.style.background="none";
+               headerContainer.style.padding="15px";
+               hederText.style.background = "white";
+              // header_selector.style.padding="0px";
+
+
+            }
+         });
+  } else {
+     console.log("La risoluzione è più piccola o uguale a 800x600");
+        // Inserisci qui il codice da eseguire quando la risoluzione è più piccola o uguale a 800x600
+
+  }
+}
+
+eseguiSeGrande();
+
+    // Aggiungi un event listener per quando la finestra viene ridimensionata
+window.addEventListener("resize", eseguiSeGrande);
+
+function expandSquare() {
+   const icon = document.querySelector('.console');
+   const head = document.querySelector('.header');
+      icon.classList.toggle('expanded');  // Aggiungi o rimuovi la classe per espandere o ridurre
+      head.classList.toggle('expanded');  // Aggiungi o rimuovi la classe per espandere o ridurre
+
+   }
+
+   const bashOutput = document.getElementById("bash-output");
+   const bashInput = document.getElementById("bash-input");
+
+   const skills = {
+     "programming_languages": ["Python", "Linux Bash", "JavaScript", "Django", "PHP"],
+     "tools": ["Git", "Jenkins", "SEO", "WordPress", "Joomla"],
+     "methodologies": ["PEP8", "AGILE"],
+     "software": ["Sublime Text 3", "Eclipse", "NetBeans"],
+  };
+
+  let currentDirectory = "/";
+
+  function processCommand(command) {
+     const args = command.trim().split(" ");
+     const cmd = args[0];
+
+     let output = "";
+
+     if (cmd === "ls") {
+      if (currentDirectory === "/") {
+       output = Object.keys(skills).join("  ");
+    } else if (skills[currentDirectory]) {
+       output = skills[currentDirectory].join("  ");
+    } else {
+       output = "No such directory.";
+    }
+ } 
+ else if (cmd === "cd") {
+   if (args[1] && skills[args[1]]) {
+    currentDirectory = args[1];
+    output = `Entered ${currentDirectory}`;
+ } else if (args[1] === "..") {
+    currentDirectory = "/";
+    output = "Returned to root directory.";
+ } else {
+    output = "Directory not found.";
+ }
+}
+else if (cmd === "cat") {
+   if (args[1] && skills[currentDirectory] && skills[currentDirectory].includes(args[1])) {
+    output = `Skill: ${args[1]} - A key expertise of Yan.`;
+ } else {
+    output = "Skill not found.";
+ }
+}
+else if (cmd === "clear") {
+   bashOutput.innerHTML = "";
+   return;
+}
+else if (cmd === "exit") {
+   bashOutput.innerHTML += `<p>Exiting Bash...<p>`;
+   bashInput.disabled = true;
+   return;
+}
+else {
+   output = "Command not found.";
+}
+
+bashOutput.innerHTML += `<p>$ ${command}</p><p>${output}</p>`;
+bashOutput.scrollTop = bashOutput.scrollHeight;
+
+
+}
+
+bashInput.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+   event.preventDefault();
+   processCommand(bashInput.value);
+   bashInput.value = "";
+}
+});
+
+
+document.querySelectorAll('.header').forEach(card => {
+
+ const text_box = card.querySelector('.header-text-container');
+ const video_box = card.querySelector('.header-video-container');
+const sidebar_box = document.querySelector(".sidebar");
+ card.addEventListener('mouseenter', () => {
+  card.querySelectorAll('.animated-video').forEach(video => { 
+   video.play();
+
+});
+  text_box.style.boxShadow="1px 2px 4px black";
+  video_box.style.boxShadow="1px 2px 4px black";
+  sidebar_box.style.transform ="scale(1.05); !important"
+});
+ card.addEventListener('mouseleave', () => {
+   card.querySelectorAll('.animated-video').forEach(video => { video.pause(); video.currentTime = 0;});
+
+
+   text_box.style.boxShadow="none";
+   video_box.style.boxShadow="none";
+   sidebar_box.style.transform ="scale(0.5);"
+});
+});
+
+
+
+
+
+
+// const header = document.getElementById('collapsibleHeader');
+//         const content = header.nextElementSibling; // Seleziona il contenuto che segue l'header
+
+//         header.addEventListener('click', () => {
+//           // Alterna la classe "expanded" sull'header
+//            header.classList.toggle('expanded');
+
+//           // Se l'header ha la classe "expanded", mostra il contenuto
+//            if (header.classList.contains('expanded')) {
+//             content.style.display = 'block'; // Espande il contenuto
+//          } else {
+//             content.style.display = 'none'; // Nasconde il contenuto
+//          }
+//       });
+
+
+</script>
+</body>
+
+</html>
